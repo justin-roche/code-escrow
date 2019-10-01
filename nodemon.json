@@ -1,0 +1,18 @@
+  {
+    "exec": "node --inspect=localhost:9229 -r ts-node/register ./server/app.ts",
+    "ext": "ts",
+    "env": {
+        "SESSION_SECRET": "yo",
+        "TOKEN": "",
+        "REDIRECT": ""
+    },
+    "watch": [
+        "server/**/*.ts",
+        "server/**/**/*.js"
+    ],
+    "ignore": [
+        ".git",
+        "node_modules/**/node_modules"
+    ],
+    "verbose": true
+}
