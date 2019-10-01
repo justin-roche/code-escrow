@@ -4,6 +4,7 @@ import * as express from "express";
 import * as path from "path";
 
 // import { authorization } from "./auth";
+import { apiRouter } from "./api-route/route";
 
 var nodeCleanup = require('node-cleanup');
 
