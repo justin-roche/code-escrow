@@ -20,7 +20,7 @@ app.disable("x-powered-by");
 
 // authorization(app)
 
-// app.use('/api', apiRouter);
+app.use('/api', apiRouter);
 
 console.log('process mode', process.env.NODE_ENV)
 

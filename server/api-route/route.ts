@@ -3,26 +3,18 @@ import { env } from '../env';
 let Router = require('express').Router
 import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig'
 
-const apiRouter: Router = Router();
+const r = Router();
 
-testRouter.post("/submit", (request, response) => {
+r.post("/submit", (request, response) => {
     console.log('run action', request.body);
-    takeAction("submit", { company: company })
-        .then(() => {
-            resolve();
-        })
-        .catch(err => {
-            reject(err);
-        });
 })
 
-testRouter.get("/companies", (request, response) => {
+r.get("/companies", (request, response) => {
     console.log('getting records', request.body);
 
 })
 
 async function takeAction(action, dataValue) {
-    // const privateKey = localStorage.getItem("cardgame_key");
     const rpc = new JsonRpc(env.endpoint);
     const privateKey = env.privateKey;
     const signatureProvider = new JsSignatureProvider([privateKey]);
@@ -49,7 +41,9 @@ async function takeAction(action, dataValue) {
     }
 }
 
-static async getItem() {
+async function getItem() {
+    console.log('getting item');
+
     try {
         const rpc = new JsonRpc(env.endpoint);
         const result = await rpc.get_table_rows({
@@ -65,4 +59,5 @@ static async getItem() {
         console.error(err);
     }
 }
-export { apiRouter };
+
+module.exports = { apiRouter: r };
