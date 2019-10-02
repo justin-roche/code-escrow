@@ -1,9 +1,9 @@
 #include <eosio/eosio.hpp>
 
 using namespace eosio;
+using namespace std;
 
 class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
-
 
   public:
   
@@ -12,12 +12,22 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
   [[eosio::action]]
   void upsert(name user, std::string first_name, std::string last_name, std::string street, std::string city, std::string state) {
     // require_auth( user );
+    std::hash<std::string> hasher;
+    auto hashed = hasher(first_name);
+    long test = static_cast<long>(hashed);
+    eosio::print(test);
+ 
+
     address_index addresses( get_self(), get_first_receiver().value );
-    auto iterator = addresses.find(user.value);
-    if( iterator == addresses.end() )
-    {
+
+    eosio::print("got addresses");
+    // auto iterator = addresses.find(user.value);
+    auto iterator = addresses.find(test);
+    if (iterator == addresses.end()) {
+
+      eosio::print("adding");
       addresses.emplace(user, [&]( auto& row ) {
-       row.key = user;
+       row.key = test;
        row.first_name = first_name;
        row.last_name = last_name;
        row.street = street;
@@ -25,9 +35,12 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
        row.state = state;
       });
     }
+
     else {
+
+      eosio::print("else");
       addresses.modify(iterator, user, [&]( auto& row ) {
-        row.key = user;
+        row.key = test;
         row.first_name = first_name;
         row.last_name = last_name;
         row.street = street;
@@ -36,10 +49,9 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
       });
     }
   }
-
   [[eosio::action]]
-  void erase(name user) {
-    require_auth(user);
+    void erase(name user) {
+    // require_auth(user);
 
     address_index addresses( get_self(), get_first_receiver().value);
 
@@ -48,15 +60,25 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
     addresses.erase(iterator);
   }
 
-private:
+
+  [[eosio::action]]
+  void debug() {
+    std::hash<std::string> hasher;
+    auto hashed = hasher("hello");
+    long test = static_cast<long>(hashed);
+    eosio::print(test);
+  }
+
+
+    private:
   struct [[eosio::table]] person {
-    name key;
+    long key;
     std::string first_name;
     std::string last_name;
     std::string street;
     std::string city;
     std::string state;
-    uint64_t primary_key() const { return key.value; }
+    uint64_t primary_key() const { return key; }
   };
   typedef eosio::multi_index<"people"_n, person> address_index;
 
