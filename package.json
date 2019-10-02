@@ -16,7 +16,6 @@
     "private": true,
     "dependencies": {
         "@angular/animations": "~7.0.0",
-        "@types/jasmine": "^2.8.9",
         "@angular/common": "~7.0.0",
         "@angular/compiler": "~7.0.0",
         "@angular/core": "~7.0.0",
@@ -25,9 +24,11 @@
         "@angular/platform-browser": "~7.0.0",
         "@angular/platform-browser-dynamic": "~7.0.0",
         "@angular/router": "~7.0.0",
+        "@types/jasmine": "^2.8.9",
         "core-js": "^2.5.4",
         "express": "^4.17.1",
         "node-cleanup": "^2.1.2",
+        "node-fetch": "^2.6.0",
         "rxjs": "~6.3.3",
         "zone.js": "~0.8.26"
     },

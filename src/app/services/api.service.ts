@@ -11,9 +11,20 @@ export class ApiService {
 
     constructor(private http: HttpClient) { }
 
+
+    submit() {
+        return this.http.post('/api/submit',{data: "x"}).pipe(
+            map((r: any) => {
+
+                let result = JSON.parse(r.body);
+                // console.log('got user', this.userData);
+            })
+        )
+    }
     getItems() {
         return this.http.get('/api/companies').pipe(
             map((r: any) => {
+
                 let result = JSON.parse(r.body);
                 // console.log('got user', this.userData);
             })
