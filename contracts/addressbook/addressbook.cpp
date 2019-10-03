@@ -50,12 +50,12 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
     }
   }
   [[eosio::action]]
-    void erase(name user) {
+    void erase(uint64_t k) {
     // require_auth(user);
 
     address_index addresses( get_self(), get_first_receiver().value);
 
-    auto iterator = addresses.find(user.value);
+    auto iterator = addresses.find(k);
     check(iterator != addresses.end(), "Record does not exist");
     addresses.erase(iterator);
   }

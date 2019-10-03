@@ -36,7 +36,7 @@ r.post("/submit", (request, response) => {
     //     city: "bbb",
     //     state: "ccc"
     // }
-    // takeAction("upsert", data);
+    takeAction("upsert", request.body);
 
 })
 
