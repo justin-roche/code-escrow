@@ -10,8 +10,10 @@ export class SubmissionFormComponent implements OnInit {
 
     private inquiry = {
         company: "test",
-        task: "task description",
         email: "a@a.com"
+        framework: "Puppeteer",
+        task: "task description",
+
     };
 
     constructor(private api: ApiService) { }
@@ -20,6 +22,6 @@ export class SubmissionFormComponent implements OnInit {
     }
 
     onSubmit() {
-        this.api.submit(inquiry).subscribe();
+        this.api.submit(this.inquiry).subscribe();
     }
 }
