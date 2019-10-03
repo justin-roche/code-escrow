@@ -12,21 +12,20 @@ export class ApiService {
     constructor(private http: HttpClient) { }
 
 
-    submit() {
-        return this.http.post('/api/submit',{data: "x"}).pipe(
+    submit(d) {
+        return this.http.post('/api/submit', { data: d }).pipe(
             map((r: any) => {
-
-                let result = JSON.parse(r.body);
-                // console.log('got user', this.userData);
+                console.log('result', r);
+                return r;
             })
         )
     }
-    getItems() {
+
+    getRecords() {
         return this.http.get('/api/companies').pipe(
             map((r: any) => {
-
-                let result = JSON.parse(r.body);
-                // console.log('got user', this.userData);
+                console.log('result', r);
+                return r;
             })
         )
     }

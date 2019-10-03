@@ -9,34 +9,15 @@ import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig'
 
 const r = Router();
 
-async function getItem() {
-    console.log('getting item');
 
-    try {
-        let x = { fetch: myfetch };
-        console.log('f obj', x);
-
-        const rpc = new JsonRpc(env.endpoint, { fetch: myfetch });
-        // rpc.get_block(1).then(console.log);
-
-        // const result = await rpc.get_table_rows({
-        //     "json": true,
-        //     "code": env.contract,
-        //     "scope": env.contract,
-        //     // "table": "addressbook",
-        //     "limit": 1,
-        //     "lower_bound": "alice",
-        // });
-        // // return result.rows[0];
-    } catch (err) {
-        console.error(err);
-    }
-}
 
 
 r.get("/companies", (request, response) => {
     console.log('getting records', request.body);
-    getItem();
+    getAll((r) => {
+        console.log('resuls', r);
+        response.json({ rows: r });
+    })
 })
 
 r.get("/block", (request, response) => {
@@ -46,19 +27,37 @@ r.get("/block", (request, response) => {
 
 r.post("/submit", (request, response) => {
     console.log('posting records', request.body);
-    let data = {
-        user: "john",
-        first_name: "John",
+    // let data = {
+    //     // user: "john",
+    //     : "John",
 
-        last_name: "McMasters",
-        street: "aaa",
-        city: "bbb",
-        state: "ccc"
-    }
-    takeAction("upsert", data);
+    //     last_name: "McMastes",
+    //     street: "aaa",
+    //     city: "bbb",
+    //     state: "ccc"
+    // }
+    // takeAction("upsert", data);
 
 })
 
+async function getAll(cb) {
+    // console.log('getting items');
+    try {
+        const rpc = new JsonRpc(env.endpoint, { fetch: myfetch });
+        const result = await rpc.get_table_rows({
+            "json": true,
+            "code": "addressbook",
+            "scope": "addressbook",
+            "table": "people",
+            "limit": 100,
+            "upper_bound": -1,
+        });
+        // console.log('res 1', result);
+        cb(result.rows);
+    } catch (err) {
+        console.error(err);
+    }
+}
 async function takeAction(action, dataValue) {
     const rpc = new JsonRpc(env.endpoint, { fetch: myfetch });
     const privateKey = env.privateKey;

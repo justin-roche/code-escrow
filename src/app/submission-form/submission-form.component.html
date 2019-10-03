@@ -1,0 +1,30 @@
+<div class="container">
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <div class="form-group">
+                <label for="company">Company Name</label>
+
+                <input [(ngModel)]="inquiry.company" required name="company" type="text" class="form-control" id="company" placeholder="my company">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input [(ngModel)]="inquiry.email" required name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Testing Framework</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>Selenium</option>
+                    <option>Puppeteer</option>
+                    <option>Cypress</option>
+                    <option>Protractor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Task Description</label>
+                <textarea [(ngModel)]="inquiry.task" required name="task" class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+            </div>
+        </div>
+        <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+</div>
