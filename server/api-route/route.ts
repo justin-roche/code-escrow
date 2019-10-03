@@ -1,5 +1,4 @@
 let myfetch = require('node-fetch');
-console.log('myfetch', typeof myfetch);
 
 const { TextEncoder, TextDecoder } = require('util');                   // node only; native TextEncoder/Decoder
 import { Api, JsonRpc } from 'eosjs';
@@ -77,4 +76,4 @@ async function takeAction(action, dataValue, cb) {
 }
 
 
-module.exports = { apiRouter: r };
+module.exports = r;

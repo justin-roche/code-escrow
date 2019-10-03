@@ -3,11 +3,7 @@ import * as compression from "compression";
 import * as express from "express";
 import * as path from "path";
 
-// import { authorization } from "./auth";
-import { apiRouter } from "./api-route/route";
-
-var nodeCleanup = require('node-cleanup');
-
+import * as apiRouter from "./api-route/route";
 
 let rq = require('request')
 const app: express.Application = express();
@@ -17,23 +13,14 @@ app.use(compression());
 app.use(urlencoded({ extended: true }));
 app.disable("x-powered-by");
 
+app.use("/api", (<any>apiRouter));
 
-// authorization(app)
+app.use(express.static(path.join(__dirname, "/../client")));
 
-app.use('/api', apiRouter);
-
-console.log('process mode', process.env.NODE_ENV)
-
-app.use(express.static(path.join(__dirname, "/../dist")));
 app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/../dist/index.html'));
+    res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
 
-nodeCleanup(function(exitCode, signal) {
-    // cluster.destroy()
-});
-
-// export { app };
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');
 });

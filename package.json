@@ -2,13 +2,14 @@
     "name": "code-escrow",
     "version": "0.0.0",
     "scripts": {
-        "ng": "ng",
+        "full:prod": "ng build --output-path dist/client && tsc -p ./server && node ./dist/server/app.js",
         "be:watch": "nodemon ./nodemon.json",
-        "fe:watch": "ng build --output-path dist --watch",
+        "fe:watch": "ng build --output-path dist/client --watch",
         "fe-dev": "ng serve",
-        "fe:prod": "ng build",
+        "fe:prod": "ng build --output-path dist/client",
         "be:start": "node ./dist/server/app.js",
         "be:build": "tsc -p ./server",
+        "be:prod": "tsc -p ./server && node ./dist/server/app.js",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
