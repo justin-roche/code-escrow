@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-submission-form',
@@ -16,9 +17,11 @@ export class SubmissionFormComponent {
         task: "task description",
     };
 
-    constructor(private api: ApiService) { }
+    constructor(private api: ApiService, private r: Router) { }
 
     onSubmit() {
-        this.api.submit(this.inquiry).subscribe();
+        this.api.submit(this.inquiry).subscribe((r) => {
+            this.r.navigate(['records']);
+        })
     }
 }

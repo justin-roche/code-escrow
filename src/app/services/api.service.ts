@@ -11,11 +11,9 @@ export class ApiService {
 
     constructor(private http: HttpClient) { }
 
-
     submit(d) {
         return this.http.post('/api/submit', { data: d }).pipe(
             map((r: any) => {
-                console.log('result', r);
                 return r;
             })
         )
@@ -24,7 +22,6 @@ export class ApiService {
     getRecords() {
         return this.http.get('/api/companies').pipe(
             map((r: any) => {
-                console.log('result', r);
                 return r;
             })
         )

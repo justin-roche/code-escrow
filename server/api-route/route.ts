@@ -9,8 +9,10 @@ import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig'
 
 const r = Router();
 
-
-
+r.get("/block", (request, response) => {
+    const rpc = new JsonRpc(env.endpoint, { fetch: myfetch });
+    rpc.get_block(1).then(console.log);
+})
 
 r.get("/companies", (request, response) => {
     console.log('getting records', request.body);
@@ -20,16 +22,12 @@ r.get("/companies", (request, response) => {
     })
 })
 
-r.get("/block", (request, response) => {
-    const rpc = new JsonRpc(env.endpoint, { fetch: myfetch });
-    rpc.get_block(1).then(console.log);
-})
-
 r.post("/submit", (request, response) => {
     console.log('posting records', request.body);
     let data = Object.assign({ user: "eosio" }, request.body.data);
-    takeAction("upsert", data);
-
+    takeAction("upsert", data, (r) => {
+        response.json(r);
+    });
 })
 
 async function getAll(cb) {
@@ -50,7 +48,7 @@ async function getAll(cb) {
         console.error(err);
     }
 }
-async function takeAction(action, dataValue) {
+async function takeAction(action, dataValue, cb) {
     const rpc = new JsonRpc(env.endpoint, { fetch: myfetch });
     const privateKey = env.privateKey;
     const signatureProvider = new JsSignatureProvider([privateKey]);
@@ -72,8 +70,7 @@ async function takeAction(action, dataValue) {
                 expireSeconds: 30,
             });
         console.log('result:', resultWithConfig);
-
-        return resultWithConfig;
+        cb(resultWithConfig);
     } catch (err) {
         throw (err)
     }
