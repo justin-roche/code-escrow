@@ -10,10 +10,10 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
   addressbook(name receiver, name code,  datastream<const char*> ds): contract(receiver, code, ds) {}
 
   [[eosio::action]]
-  void upsert(name user, std::string first_name, std::string last_name, std::string street, std::string city, std::string state) {
+  void upsert(name user, std::string company, std::string framework, std::string email, std::string task) {
     // require_auth( user );
     std::hash<std::string> hasher;
-    auto hashed = hasher(first_name);
+    auto hashed = hasher(company);
     long test = static_cast<long>(hashed);
     eosio::print(test);
  
@@ -28,11 +28,10 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
       eosio::print("adding");
       addresses.emplace(user, [&]( auto& row ) {
        row.key = test;
-       row.first_name = first_name;
-       row.last_name = last_name;
-       row.street = street;
-       row.city = city;
-       row.state = state;
+       row.company = company;
+       row.framework = framework;
+       row.email = email;
+       row.task = task;
       });
     }
 
@@ -41,11 +40,10 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
       eosio::print("else");
       addresses.modify(iterator, user, [&]( auto& row ) {
         row.key = test;
-        row.first_name = first_name;
-        row.last_name = last_name;
-        row.street = street;
-        row.city = city;
-        row.state = state;
+        row.company = company;
+        row.framework = framework;
+        row.email = email;
+        row.task = task;
       });
     }
   }
@@ -73,11 +71,10 @@ class [[eosio::contract("addressbook")]] addressbook : public eosio::contract {
     private:
   struct [[eosio::table]] person {
     long key;
-    std::string first_name;
-    std::string last_name;
-    std::string street;
-    std::string city;
-    std::string state;
+    std::string company;
+    std::string framework;
+    std::string email;
+    std::string task;
     uint64_t primary_key() const { return key; }
   };
   typedef eosio::multi_index<"people"_n, person> address_index;

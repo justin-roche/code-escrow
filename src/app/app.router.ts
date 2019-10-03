@@ -4,12 +4,16 @@ import { flatMap, map, catchError, delay, throttleTime, concatMap, bufferTime, s
 import { Observable, Subject, pipe, of, from, interval, concat, timer, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs';
 import { SubmissionFormComponent } from './submission-form/submission-form.component';
 import { RecordsTableComponent } from './records-table/records-table.component';
+import { LandingComponent } from './landing/landing.component';
 
 export const routes: Route[] = [
-    // { path: '', pathMatch: 'full', redirectTo: 'login' },
-    // { path: 'login', pathMatch: 'full', component: LoginComponent },
+    { path: '', pathMatch: 'full', redirectTo: 'landing' },
+
     {
-        path: 'request', pathMatch: 'full', component: SubmissionFormComponent,
+        path: 'landing', pathMatch: 'full', component: LandingComponent,
+    },
+    {
+        path: 'inquiry', pathMatch: 'full', component: SubmissionFormComponent,
     },
     {
         path: 'records', pathMatch: 'full', component: RecordsTableComponent,

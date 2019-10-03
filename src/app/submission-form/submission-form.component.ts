@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -6,20 +6,17 @@ import { ApiService } from '../services/api.service';
     templateUrl: './submission-form.component.html',
     styleUrls: ['./submission-form.component.css']
 })
-export class SubmissionFormComponent implements OnInit {
+
+export class SubmissionFormComponent {
 
     private inquiry = {
         company: "test",
-        email: "a@a.com"
+        email: "a@a.com",
         framework: "Puppeteer",
         task: "task description",
-
     };
 
     constructor(private api: ApiService) { }
-
-    ngOnInit() {
-    }
 
     onSubmit() {
         this.api.submit(this.inquiry).subscribe();

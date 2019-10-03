@@ -8,18 +8,8 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent {
     title = 'code-escrow';
+
     constructor(private api: ApiService) {
-        console.log('hi');
-    }
-
-    getItems() {
-        // alert("wow");
-        this.api.getItems().subscribe();
-    }
-
-    submit() {
-        // alert("wow");
-        this.api.submit().subscribe();
     }
 
 

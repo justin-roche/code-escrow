@@ -27,23 +27,19 @@
                     "type": "int32"
                 },
                 {
-                    "name": "first_name",
+                    "name": "company",
                     "type": "string"
                 },
                 {
-                    "name": "last_name",
+                    "name": "framework",
                     "type": "string"
                 },
                 {
-                    "name": "street",
+                    "name": "email",
                     "type": "string"
                 },
                 {
-                    "name": "city",
-                    "type": "string"
-                },
-                {
-                    "name": "state",
+                    "name": "task",
                     "type": "string"
                 }
             ]
@@ -57,23 +53,19 @@
                     "type": "name"
                 },
                 {
-                    "name": "first_name",
+                    "name": "company",
                     "type": "string"
                 },
                 {
-                    "name": "last_name",
+                    "name": "framework",
                     "type": "string"
                 },
                 {
-                    "name": "street",
+                    "name": "email",
                     "type": "string"
                 },
                 {
-                    "name": "city",
-                    "type": "string"
-                },
-                {
-                    "name": "state",
+                    "name": "task",
                     "type": "string"
                 }
             ]

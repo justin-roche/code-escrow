@@ -27,16 +27,8 @@ r.get("/block", (request, response) => {
 
 r.post("/submit", (request, response) => {
     console.log('posting records', request.body);
-    // let data = {
-    //     // user: "john",
-    //     : "John",
-
-    //     last_name: "McMastes",
-    //     street: "aaa",
-    //     city: "bbb",
-    //     state: "ccc"
-    // }
-    takeAction("upsert", request.body);
+    let data = Object.assign({ user: "eosio" }, request.body.data);
+    takeAction("upsert", data);
 
 })
 
