@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 export class SubmissionFormComponent {
 
     private inquiry = {
-        company: "test",
-        email: "a@a.com",
-        framework: "Puppeteer",
-        task: "task description",
+        company: "",
+        email: "",
+        framework: null,
+        task: "",
     };
 
     constructor(private api: ApiService, private r: Router) { }

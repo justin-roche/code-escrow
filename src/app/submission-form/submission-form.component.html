@@ -3,7 +3,7 @@
         <div class="form-group">
             <div class="form-group">
                 <label for="company">Company Name</label>
-                <input [(ngModel)]="inquiry.company" required name="company" type="text" class="form-control" id="company" placeholder="my company">
+                <input [(ngModel)]="inquiry.company" required name="company" type="text" class="form-control" id="company">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Email address</label>
@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Testing Framework</label>
-                <select [(ngModel)]="inquiry.framework" value="inquiry.framework" name="framework" class="form-control" id="exampleFormControlSelect1">
+                <select [(ngModel)]="inquiry.framework" required value="inquiry.framework" name="framework" class="form-control" id="exampleFormControlSelect1">
                     <option value="Selenium">Selenium</option>
                     <option value="Puppeteer">Puppeteer</option>
                     <option value="Cypress">Cypress</option>

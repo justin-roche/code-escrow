@@ -4,7 +4,7 @@
     "scripts": {
         "full:prod": "ng build --output-path dist/client && tsc -p ./server && node ./dist/server/app.js",
         "be:watch": "nodemon ./nodemon.json",
-        "fe:watch": "ng build --output-path dist/client --watch",
+        "fe:watch": "ng build --output-path client --watch",
         "fe-dev": "ng serve",
         "fe:prod": "ng build --output-path dist/client",
         "be:start": "node ./dist/server/app.js",
