@@ -32,7 +32,7 @@
         "gulp-exec": "^4.0.0",
         "gulp-watch": "^5.0.1",
         "node-cleanup": "^2.1.2",
-        "node-fetch": "^2.6.0",
+        "node-fetch": "^2.6.1",
         "rxjs": "~6.3.3",
         "zone.js": "~0.8.26"
     },
